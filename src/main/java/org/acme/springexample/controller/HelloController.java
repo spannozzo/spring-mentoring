@@ -23,9 +23,7 @@ public class HelloController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public void saveMessage(@RequestBody String message) {
-		
 		helloService.saveMessage(message);
-		
 		
 	}
 	
