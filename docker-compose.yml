@@ -1,0 +1,30 @@
+version: "3.3"
+services:
+  app:
+    build: 
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      - spring.datasource.url=jdbc:postgresql://db:5432/test_db
+    depends_on:
+      - "db"
+    networks:
+      - my-network
+  db:
+    restart: always
+    image: postgres:alpine
+    environment:
+      POSTGRES_USER: 'root'
+      POSTGRES_PASSWORD: '1234'
+      POSTGRES_DB: 'test_db'
+    ports:
+      - '3307:3306'
+    expose:
+      - '3307'
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    external: false
+    
