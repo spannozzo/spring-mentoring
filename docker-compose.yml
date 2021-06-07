@@ -5,9 +5,11 @@ services:
       context: .
       dockerfile: ./Dockerfile
     environment:
-      - spring.datasource.url=jdbc:postgresql://db:5432/test_db
+      - spring_datasource_url=jdbc:postgresql://db:5432/test_db
     depends_on:
       - "db"
+    ports:
+      - '8080:8080'
     networks:
       - my-network
   db:
