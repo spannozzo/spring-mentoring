@@ -12,6 +12,7 @@ services:
       - '8080:8080'
     expose:
       - '8080'
+    command: java -jar ./spring-example-0.0.1-SNAPSHOT.jar
     networks:
       - my-network
   db:
@@ -26,9 +27,7 @@ services:
     expose:
       - '5432'
     volumes:
-      - type: bind
-        source: ./db-data
-        target: /var/lib/postgresql
+      - ./db-data/:/docker-entrypoint-initdb.d/
     networks:
       - my-network
 
